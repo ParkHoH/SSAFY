@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+* {
+	text-align: center;
+	background-color: CornSilk;
+}
+
+body {
+	opacity: 0.8;
+}
+
+h1 {
+	color: magenta;
+	font-size: 50px;
+}
+
+h2 {
+	color: black;
+	font-family: 궁서체;
+}
