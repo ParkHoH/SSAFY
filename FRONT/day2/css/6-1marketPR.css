@@ -1,0 +1,45 @@
+#container {
+  width: 640px;
+  margin: 0 auto;
+  padding: 5px;
+  border: 1px solid red;
+
+  text-align: center;
+}
+
+img {
+  width: 99%;
+}
+
+h1, h2 {
+  font-size: 20px;
+}
+
+h1 {
+  background-color: black;
+  color: white;
+}
+
+h2 {
+  color: red;
+}
+
+p {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.left {
+  text-align: left;
+  padding: 10px;
+  font-size: 15px;
+}
+
+.blue {
+  color: blue;
+}
+
+.green {
+  font-size: 15px;
+  color: green;
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html> <!--html은 루트 태그를 나타냄 (xml도 가능)-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      background-color: bisque;
+      font-family: consolas;
+      font-size: 20pt;
+    }
+
+    ul li {
+      display: inline;
+      letter-spacing: 4px; /*글자 사이의 간격*/
+      padding: 0px 20px; /*글자 간격*/
+      border: 10px;
+      color: blueviolet; /*안쪽 여백*/
+    }
+
+    ul li a {
+      text-decoration: none;
+      color: blue;
+    }
+
+    ul li a:hover {
+      color: red;
+    }
+
+    .green {
+      color: green;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>List Test</h1>
+
+  <ol class="green">
+    <li>coffee</li>
+    <li>milk</li>
+    <li>tea</li>
+  </ol>
+  <hr>
+
+  <ul>
+    <li><a href="#" target="_blank">회사 소개</a></li>
+    <li><a href="#" target="_blank">도서</a></li>
+    <li><a href="#" target="_blank">자료실</a></li>
+    <li><a href="#" target="_blank">질문과 답변</a></li>
+    <li><a href="#" target="_blank">동영상 강의</a></li>
+  </ul>
+
+</body>
+</html>

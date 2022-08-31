@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    h1 {
+      border: 1px solid red;
+    }
+
+    div {
+      width: 100px;
+      height: 100px;
+      position: relative; /* 원래 요소가 들어가야 할 위치에서 상대적인 값으로 배치됨(top, bottom 등이 적용됨) */
+      border: 1px solid blue;
+    }
+
+    #div1 {
+      background-color: aqua;
+      top: 0px;
+      left: 0px;
+    }
+
+    #div2 {
+      background-color: bisque;
+      top: 50px;
+      left: 50px;
+    }
+
+    #div3 {
+      background-color: brown;
+      top: 100px;
+      left: 100px;
+    }
+
+    #div1:hover, #div2:hover, #div3:hover {
+      background-color:purple;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>Static Test</h1>
+  <div id="div1">div1</div>
+  <div id="div2">div2</div>
+  <div id="div3">div3</div>
+
+</body>
+</html>

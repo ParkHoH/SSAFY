@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    table {
+      width: 100%;
+      border-top: 4px solid blueviolet;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 2px solid greenyellow;
+      padding: 10px;
+      text-align: center;
+    }
+
+    thead tr {
+      background-color: gray;
+      color: #ffff;
+    }
+
+    tbody tr:nth-child(2n) {
+      background-color: aqua;
+    }
+    
+    tbody tr:nth-child(2n-1) {
+      background-color: yellowgreen;
+    }
+  </style>
+</head>
+<body>
+  <h1>Table Test</h1>
+  <table>
+    <caption>Customer Information</caption> <!-- h1 같은 태그보다는 caption을 사용함으로써 검색, 시각장애인을 위해 읽어주는 경우 등에 도움을 줌 -->
+    <thead>
+      <tr>
+        <th>번 호</th>
+        <th>이 름</th>
+        <th>주 소</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>123</td>
+        <td>tommy lee</td>
+        <td>seoul</td>
+      </tr>
+      <tr>
+        <td>234</td>
+        <td>jane kim</td>
+        <td>london</td>
+      </tr>
+      <tr>
+        <td>345</td>
+        <td>harry potter</td>
+        <td>seoul</td>
+      </tr>
+      <tr>
+        <td>456</td>
+        <td>tom potter</td>
+        <td>seoul</td>
+      </tr>
+      <tr>
+        <td>678</td>
+        <td>gerry potter</td>
+        <td>LA</td>
+      </tr>
+    </tbody>
+
+
+  </table>
+
+</body>
+</html>
