@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 2. 익명 함수: 이름이 없는 함수
+        var num = 123;
+        // f1("kim"); // 오류 발생 (호이스팅이 안 됨)
+
+        // 1) 변수에 함수를 저장한 경우
+        var f1 = function (name) {
+            alert("hello, " + name);
+        }
+
+        f1("kim");
+
+        // 2) 파라메터로 함수를 전다
+        function funtest(some) {
+            some();
+        }
+
+        function go() {
+            alert('gogo');
+        }
+
+        funtest(f1("lee"));
+        funtest(go);
+        funtest(function() {
+            console.log(11111);
+        });
+
+        // 3) return 값으로 함수를 사용
+        function test(num) {
+            return function() {
+                console.log("gogo..." + num);
+            }
+        }
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

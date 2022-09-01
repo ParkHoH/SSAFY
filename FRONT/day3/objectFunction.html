@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /* 2. 함수의 정의 방식과 동일
+        함수 이름 자체가 생성자가 됨. 코드를 재사용 가능함.
+        */
+
+        function User(num, name, address) {
+            this.num = num;
+            this.name = name;
+            this.address = address;
+
+            this.showInfo = function() {
+                document.write(this.num + ", " + this.name + ", " + this.address);
+            }
+        }
+
+        var u1 = new User(123, "노누리", "서울");
+        var u2 = new User(234, "이누리", "부산");
+
+        u1.showInfo();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
