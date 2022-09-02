@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function handleEvent(code) {
+        switch (code) {
+          case 1:
+            alert("mouse click!");
+            break;
+          case 2:
+            alert("mouse over!");
+            break;
+          case 3:
+            open(
+              "https:www.naver.com",
+              "",
+              "width=700px, height=700px, scrollbars=yes"
+            );
+            break;
+          case 4:
+            print();
+            break;
+          case 5:
+            close();
+            break;
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1 id="head">Event Test</h1>
+    <input type="button" value="click" id="first" />
+    <!-- <input type="button" value="click" onclick="handleEvent(1)"> -->
+    <input type="button" value="mouseover" onmouseover="handleEvent(2)" />
+    <input type="button" value="open" onclick="handleEvent(3)" />
+    <input type="button" value="print" onclick="handleEvent(4)" />
+    <input type="button" value="close" onclick="handleEvent(5)" />
+
+    <script>
+      const f = document.getElementById("first");
+      // f.addEventListener("click", function () {
+        //   alert("hellow script!");
+        // });
+      f.addEventListener("click", changeColor);
+
+      function changeColor() {
+        const h = document.getElementById("head")
+        h.style.color = "red"; // js에서 CSS 조정할 때 style이라는 값으로 지정
+        h.style.fontFamily = "궁서체";
+        h.style.fontSize = "40px";
+      }
+
+    </script>
+  </body>
+</html>

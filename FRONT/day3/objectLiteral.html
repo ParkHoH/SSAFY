@@ -10,6 +10,7 @@
         // 클래스 선언과 동시에 객체 생성하는 방식. 한번에 객체 하나씩만 생성 가능함.
         // 주용도: 여러개의 데이터를 하나로 포장하는 경우에 사용
         // key: value 구조로 표현
+        var name = "harry potter";
         var user = {
             num: "123",
             name: "노누리",
@@ -35,7 +36,7 @@
         document.write(user["name"]);
 
         for (const key in user) {
-            console.log(key);
+            // console.log(key);
         }
 
     </script>

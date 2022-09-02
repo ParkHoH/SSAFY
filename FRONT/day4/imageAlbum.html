@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Untitled Document</title>
+    <script type="text/javascript">
+      var photos = new Array();
+      var index = 0; //현재보여지고 있는 이미지의 인덱스
+      var pic;
+
+      /*보여줄 이미지들을 배열에 저장*/
+      photos[0] = "images/movie01.jpg";
+      photos[1] = "images/movie02.jpg";
+      photos[2] = "images/movie03.jpg";
+      photos[3] = "images/movie04.jpg";
+      photos[4] = "images/movie05.jpg";
+      photos[5] = "images/movie06.jpg";
+      photos[6] = "images/movie07.jpg";
+
+      function backward() {
+        if (index == 0) {
+          alert("첫번째 영화입니다!");
+          return;
+        }
+
+        const img = document.getElementById("pic");
+        img.src = photos[--index];
+      }
+
+      function forward() {
+        if (index == 6) {
+          alert("마지막 영화입니다!");
+          return;
+        }
+
+        const img = document.getElementById("pic");
+        img.src = photos[++index];
+      }
+
+			function firstMove() {
+        const img = document.getElementById("pic");
+        img.src = photos[0];
+      }
+
+			function lastMove() {
+        const img = document.getElementById("pic");
+        img.src = photos[6];
+      }
+
+    </script>
+  </head>
+  <body>
+    <body style="margin-left: 100px; margin-top: 100px; align: center">
+      <img src="images/movie01.jpg" id="pic" style="position: 250, 200" />
+
+      <form name="menu">
+        <input
+          type="button"
+          value="<<backward"
+          onClick="backward()"
+          style="background-color: white; border: none"
+        />
+        <input
+          type="button"
+          value="first"
+          onclick="firstMove()"
+          style="background-color: white; border: none"
+        />
+        <input
+          type="button"
+          value="last"
+          onclick="lastMove()"
+          style="background-color: white; border: none"
+        />
+        <input
+          type="button"
+          value="forward>>"
+          name="forw"
+          onClick="forward()"
+          style="background-color: white; border: none"
+        />
+      </form>
+    </body>
+  </body>
+</html>
