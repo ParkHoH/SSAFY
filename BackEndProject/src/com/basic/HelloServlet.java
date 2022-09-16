@@ -27,6 +27,7 @@ public class HelloServlet extends HttpServlet {
 		out.println("<html><body>");
 		out.println("	<h1>hello, Servlet!!!</h1>");
 		out.println("	<a href=WelcomServlet>welcome page</a>");
+		out.println("	<a href=LoginCheck?id=kim&pass=123>loginTest page</a>");
 		out.println("</body></html>");
 		
 	}
