@@ -10,7 +10,7 @@ public class CustomerSelect {
 	// Module path에 라이브러리 추가 필요
 	public static void main(String[] args) {
 		String DBMS = "mysql";
-		String url = "jdbc:" + DBMS + "://localhost:3306/scottdb";
+		String url = "jdbc:" + DBMS + "://localhost:33	06/scottdb";
 		String user = "scott";
 		String password = "scott";
 		String driver = "com." + DBMS + ".cj.jdbc.Driver";
