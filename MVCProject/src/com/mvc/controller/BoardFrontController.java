@@ -28,7 +28,7 @@ public class BoardFrontController extends HttpServlet {
 //    	System.out.println(reqString);
     	
     	if (reqString.equals("/list.bod")) {
-//    		con.list(request, response);
+    		con.list(request, response);
 			
 		} else if (reqString.equals("/read.bod")) {
 
