@@ -42,7 +42,7 @@ public class CustomerList extends HttpServlet {
 		Statement  stat;
 		
 		try {
-			con = DriverManager.getConnection(url, user, password);
+				con = DriverManager.getConnection(url, user, password);
 			stat = con.createStatement();
 			ResultSet rs = stat.executeQuery("select num, name, address from customer");
 			 
