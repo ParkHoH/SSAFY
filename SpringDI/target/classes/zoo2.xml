@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+<context:component-scan base-package="com.animal.annotation"></context:component-scan>
+	
+<bean name="tiger1" class="com.animal.annotation.Tiger">
+	<constructor-arg name="age" value="5"></constructor-arg>
+	<property name="name" value="어린이 타이거"></property>
+</bean>
+
+<bean name="tiger2" class="com.animal.annotation.Tiger">
+	<constructor-arg name="age" value="10"></constructor-arg>
+	<property name="name" value="어른이 타이거"></property>
+</bean>
+
+<bean name="lion1" class="com.animal.annotation.Lion">
+	<constructor-arg name="age" value="5"></constructor-arg>
+	<property name="name" value="어린이 라이언"></property>
+</bean>
+
+<bean name="lion2" class="com.animal.annotation.Lion">
+	<constructor-arg name="age" value="8"></constructor-arg>
+	<property name="name" value="어른이 라이언"></property>
+</bean>
+
+</beans>

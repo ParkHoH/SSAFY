@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean name="tiger1" class="com.animal.Tiger">
+	<constructor-arg name="age" value="5"></constructor-arg>
+	<property name="name" value="어린이 타이거"></property>
+</bean>
+
+<bean name="tiger2" class="com.animal.Tiger">
+	<constructor-arg name="age" value="10"></constructor-arg>
+	<property name="name" value="어른이 타이거"></property>
+</bean>
+
+<bean name="lion1" class="com.animal.Lion">
+	<constructor-arg name="age" value="5"></constructor-arg>
+	<property name="name" value="어린이 라이언"></property>
+</bean>
+
+<bean name="lion2" class="com.animal.Lion">
+	<constructor-arg name="age" value="8"></constructor-arg>
+	<property name="name" value="어른이 라이언"></property>
+</bean>
+
+<bean name="seoulZoo" class="com.animal.SeoulZoo">
+	<constructor-arg name="tiger" ref="tiger1"></constructor-arg>
+	<property name="lion" ref="lion2"></property>
+</bean>
+
+<bean name="londonZoo" class="com.animal.LondonZoo">
+	<constructor-arg name="tiger" ref="tiger2"></constructor-arg>
+	<property name="lion" ref="lion1"></property>
+</bean>
+
+</beans>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		
+	<!-- 소스 코드 안에서 사용한 annotation 기능을 활성화 시키는 태그 -->		
+	<context:component-scan base-package="com.coffee.annotation"></context:component-scan>
+
+	<bean id="americano" class="com.coffee.annotation.Americano">
+		<constructor-arg name="price" type="int" value="8888"></constructor-arg>
+		<property name="origin" value="india"></property>
+	</bean>
+	
+	<bean id="coffee2" class="com.coffee.annotation.CaffeLatte">
+		<constructor-arg name="price" type="int" value="8000"></constructor-arg>
+		<property name="origin" value="columbia"></property>
+	</bean>
+	
+	<bean id="coffee3" class="com.coffee.annotation.Americano">
+		<constructor-arg index="0" type="int" value="4500"></constructor-arg>
+		<property name="origin" value="vietnam"></property>
+	</bean>
+	
+	<bean id="coffee4" class="com.coffee.annotation.CaffeLatte">
+		<constructor-arg name="price" type="int" value="3000"></constructor-arg>
+		<property name="origin" value="indonesia"></property>
+	</bean>
+</beans>

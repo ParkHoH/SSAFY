@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="coffee1" class="com.coffee.Americano">
+		<constructor-arg name="price" type="int" value="5000"></constructor-arg>
+		<property name="origin" value="india"></property>
+	</bean>
+	
+	<bean id="coffee2" class="com.coffee.CaffeLatte">
+		<constructor-arg name="price" type="int" value="8000"></constructor-arg>
+		<property name="origin" value="columbia"></property>
+	</bean>
+	
+	<bean id="coffee3" class="com.coffee.Americano">
+		<constructor-arg index="0" type="int" value="4500"></constructor-arg>
+		<property name="origin" value="vietnam"></property>
+	</bean>
+
+	<bean id="starbucks" class="com.coffee.Starbucks">
+		<constructor-arg name="americano" ref="coffee1"></constructor-arg>
+		<constructor-arg name="caffelatte" ref="coffee2"></constructor-arg>
+	</bean>
+	
+	<bean id="coffeebean" class="com.coffee.Coffeebean">
+		<property name="americano" ref="coffee3"></property>
+		<property name="caffelatte" ref="coffee2"></property>
+	</bean>
+</beans>
