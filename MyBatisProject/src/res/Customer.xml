@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Customer">
+
+	<select id="selectAll" resultType="Customer">
+		select * from customer
+	</select>
+	
+	<select id="selectOne" parameterType="String" resultType="Customer">
+		select * from customer where num = #{num}
+	</select>
+	
+	<select id="selectAddress" parameterType="String" resultType="Customer">
+		select * from customer where address = #{address}
+	</select>
+	
+	<select id="insert">
+		insert into customer (num, name, address) values (#{num}, #{name}, #{address})
+	</select>
+	
+	<select id="delete">
+		delete from customer where num = #{num}
+	</select>
+	
+	<select id="update">
+		update customer set name = "hh" where name = #{name} 
+	</select>
+</mapper>

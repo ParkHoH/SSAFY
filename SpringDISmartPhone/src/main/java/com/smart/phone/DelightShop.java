@@ -1,12 +1,19 @@
 package com.smart.phone;
 
-import java.util.ArrayList;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class DelightShop implements ElecShop{
-
+	@Autowired
+	Gallaxy[] gallaxy;
+	
 	@Override
-	public ArrayList<String> productList() {
-		return null;
+	public void productList() {
+		for (SmartPhone smartPhone : gallaxy) {
+			smartPhone.info();
+		}
 	}
-
 }
