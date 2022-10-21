@@ -20,7 +20,7 @@ public class CustomerTest {
 		 	SqlSessionFactory factory = builder.build(reader);
 //		 	SqlSession session = factory.openSession(true); // auto commit
 		 	SqlSession session = factory.openSession(); // auto commit x
-			
+		 	
 		 	// 1. selectList(): select 결과가 여러 건일 때
 		 	List<Customer> list =  session.selectList("Customer.selectAll");
 		 	
@@ -30,11 +30,25 @@ public class CustomerTest {
 		 	
 		 	System.out.println("---------");
 		 	
+		 	
 		 	// 2. selectOne
 		 	Customer c = session.selectOne("Customer.selectOne", "411");
 		 	System.out.println(c);
 		 	
 		 	System.out.println("---------");
+		 	
+		 	
+		 	// 2-1. join
+//		 	List<Customer> list1 = session.selectList("Customer.join");
+//		 	
+//		 	for (Customer c1 : list1) {
+//				System.out.println(c1);
+//			}
+//		 	System.out.println("---------");
+		 	
+		 	// 2-2.
+		 	String[] col = {"20", "30", "50"};
+		 	 
 		 	
 		 	// 3. insert
 		 	// ... auto commit 이 아니기 때문에 따로 해줄 필요가 있음

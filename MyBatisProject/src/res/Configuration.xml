@@ -4,7 +4,7 @@
 	<!-- 1. typeAliases -->
     <typeAliases>
         <typeAlias type="com.mybatis.Customer" alias="Customer"/>
-        <!-- <typeAlias type="com.mybatis.Board" alias="Board"/> -->
+        <typeAlias type="com.mybatis.Board" alias="Board"/>
     </typeAliases>
 
 	<!-- 2. db setting -->
@@ -22,7 +22,8 @@
 
     <!-- 3. mapper file: table&object mapping -->
     <mappers>
-     <mapper resource="res/customer.xml"/>
+     <mapper resource="res/Customer.xml"/>
+     <mapper resource="res/Board.xml"/>
     </mappers>
 
 </configuration>

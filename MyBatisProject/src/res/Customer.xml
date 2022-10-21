@@ -4,7 +4,48 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Customer">
+	<resultMap type="Customer" id="joinResult">
+		<result column="empid" property="num"/>
+		<result column="fname" property="name"/>
+		<result column="deptname" property="address"/>
+	</resultMap>
 
+	<select id="select1" parameterType="joinResult">
+		select empid, fname, deptid
+		from emp
+		where empid = 50
+		<if test="fname != null">
+			and fname like concat('%', #{fname}, '%')
+		</if>
+	</select>
+
+	<select id="select2" parameterType="map" resultMap="joinResult">
+		select * from emp
+		<if test="deptid != null">
+			where deptid = #{deptid}
+		</if>
+		<if test="jobid != null">
+			where jobid = #{jobid}
+		</if>
+	</select>
+
+	<select id="select3" resultMap="joinResult">
+		select * from empid, fname, deptid
+		from emp
+		where deptid in (
+			<foreach collection="array" separator="," item="itemx" >
+				#{itemx}
+			</foreach>
+		)
+	</select>
+	
+	<select id="join" resultType="Customer">
+		select e.empid empid, e.fname fname, d.deptname deptname
+		from emp e, dept d
+			where e.deptid is not null 
+			and e.deptid = d.deptid
+	</select>
+	
 	<select id="selectAll" resultType="Customer">
 		select * from customer
 	</select>
@@ -18,7 +59,7 @@
 	</select>
 	
 	<select id="insert">
-		insert into customer (num, name, address) values (#{num}, #{name}, #{address})
+		insert into customer values (#{num}, #{name}, #{address})
 	</select>
 	
 	<select id="delete">
