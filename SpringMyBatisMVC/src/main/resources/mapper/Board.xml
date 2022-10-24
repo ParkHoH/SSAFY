@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 이 파일과 매핑되어 실행될 때 사용되는 자바 파일명 -->
+<mapper namespace="com.mvc.mapper.BoardMapper">
+
+	<select id="selectAll" resultType="Board">
+		select * from board
+		order by wdate desc
+	</select>
+	
+	<select id="selectOne" resultType="Board">
+		select * from board
+		where num = #{num}
+	</select>
+	
+	<select id="insert" parameterType="Board">
+		insert into board values (#{num}, #{pass}, #{name}, sysdate(), #{title}, #{content}, #{count})
+	</select>
+	
+	<update id="countUp" parameterType="String">
+		update board set count = count + 1 where num = #{num}
+	</update>
+	
+	<update id="modify" parameterType="java.util.Map">
+		update board set title = #{title}, content = #{content} where num = #{num}
+	</update>
+	
+	<delete id="delete" parameterType="String">
+		delete from board where num = #{num}
+	</delete>
+	
+	<!-- 검색에 필요한 데이터 2가지: 검색 기준 & 검색어 -->
+	<select id="search" resultType="Board" parameterType="java.util.Map">
+		select * from board
+		<where>
+			<choose>
+				<when test="condition != null and condition == 'name'">
+					name = #{word}
+				</when>
+
+				<when test="condition != null and condition == 'title'">
+					title like concat('%', #{word}, '%')
+				</when>
+			</choose>
+		</where>
+	</select>
+	
+	<insert id="test">
+		insert into board values ('100', 'test', 'test', sysdate(), 'test', 'test', 0)
+	</insert>
+	
+</mapper>
