@@ -17,7 +17,7 @@
 <script type="text/javascript">	
 </script>
 </head>
-<body>
+<body onload="selectAll()">
 	<div class="container">
 		<form id="form1" class="form-horizontal">
 			<h2>Customer Management</h2>
@@ -36,8 +36,10 @@
 			<div class="btn-group">
 				<input type="button" class="btn btn-primary" value="등록"	id="btnInsert" onclick="customerInsert()" /> 
 					<input type="button"class="btn btn-primary" value="수정" id="btnUpdate"	onclick="customerUpdate()" /> 
-					<input type="button"class="btn btn-primary" value="삭제" id="btnDelete" onclick="customerDelete()" /> <input type="button"
-					class="btn btn-primary" value="초기화" id="btnInit" onclick="init()" />
+					<input type="button"class="btn btn-primary" value="삭제" id="btnDelete" onclick="customerDelete()" /> 
+					<input type="button"class="btn btn-primary" value="검색" id="btnUpdate"	onclick="customerSearch()" /> 
+					<input type="button"class="btn btn-primary" value="전체" id="btnDelete" onclick="customerAll()" /> 
+					<input type="button" class="btn btn-primary" value="초기화" id="btnInit" onclick="init()" />
 			</div>
 		</form>
 	</div>
@@ -56,6 +58,147 @@
 		</table>
 	</div>
 </body>
+<script>
+	function selectAll() {
+		fetch("http://localhost:8080/rest/customers")
+		.then(response => response.json())
+		.then(data => selectAllResult(data));
+	}
+	
+	function selectAllResult(data) {
+		let list = ``;
+		
+		data.forEach((item) => {
+			list += `<tr onclick='selectOne(\${item.num})'>
+						<td>\${item.num}</td>
+						<td>\${item.name}</td>
+						<td>\${item.address}</td>
+					</tr>`;
+		});
+		
+		document.getElementById("tb").innerHTML = list;
+	}
+
+	function selectOne(num) {
+		fetch("http://localhost:8080/rest/customers/" + num)
+			.then(response => response.json())
+			.then(data => selectOneResult(data));
+	}
+
+	function selectOneResult(data) {
+		let num = document.getElementById("num");
+		let name = document.getElementById("name");
+		let address = document.getElementById("address");
+
+		if (data != "") {
+			num.value = data.num;
+			name.value = data.name;
+			address.value = data.address;
+			
+			num.readOnly = true;
+			name.readOnly = true;
+		} else {
+			num.value = data;
+			name.value = data;
+			address.value = data;
+		}
+	}
+	
+	function init() {
+		selectOneResult("");
+		
+		document.getElementById("num").readOnly = false;
+		document.getElementById("name").readOnly = false;
+	}
+
+	function customerInsert() {
+		let num = document.getElementById("num").value;
+		let name = document.getElementById("name").value;
+		let address = document.getElementById("address").value;
+
+		if (num != "" && name != "" && address != "") {
+			fetch("http://localhost:8080/rest/customers", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					"num": num,
+					"name": name,
+					"address": address
+				})
+			})
+				.then(response => {
+					selectAll();
+					init();
+				});
+
+		} else {
+			alert("모든 값을 입력해주세요.");
+		}
+	}
+
+	function customerUpdate() {
+		let num = document.getElementById("num").value;
+		let name = document.getElementById("name").value;
+		let address = document.getElementById("address").value;
+
+		if (num != "") {
+			fetch("http://localhost:8080/rest/customers", {
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					"num": num,
+					"name": name,
+					"address": address
+				})
+			})
+				.then(response => {
+					selectAll();
+					init();
+				});
+
+		} else {
+			alert("모두 입력해주세요.");
+		}
+	}
+
+	function customerDelete() {
+		let num = document.getElementById("num").value;
+
+		if (num != "") {
+			fetch("http://localhost:8080/rest/customers/" + num, {
+				method: "DELETE",
+			})
+				.then(response => {
+					selectAll();
+					init();
+				});
+
+		} else {
+			alert("삭제할 번호를 입력해주세요.");
+		}
+	}
+
+	function customerSearch() {
+		let address = document.getElementById("address").value;
+
+		console.log("hreerer");
+
+		fetch("http://localhost:8080/rest/customers/find/" + address)
+			.then(response => response.json())
+			.then(data => selectAllResult(data));
+	}
+
+	function customerAll() {
+		selectAll();
+		init();
+	}
+
+</script>
+
 </html>
 
 

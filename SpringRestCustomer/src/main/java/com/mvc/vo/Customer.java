@@ -3,10 +3,16 @@ package com.mvc.vo;
 //vo(value object):customer 
 public class Customer {
 	
+	//@NotEmpty @Size(min=4, max=12)
 	private String num;
+
+	//@NotEmpty @Size(min=4, max=12)
 	private String name;
+	
+	//@NotEmpty @Email
 	private String address;	
 	
+
 	public Customer() {}	
 	
 	public Customer(String num, String name, String address) {
