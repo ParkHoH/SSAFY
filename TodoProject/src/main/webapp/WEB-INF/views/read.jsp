@@ -18,38 +18,37 @@
 </head>
 <body>
 	<div class="container text-center">
-	<img src="resources/image/f2.jpg"/>
-		<h1>TODO DETAIL</h1>
-		
-	<br>
-			<table class="table table-bordered"><TR>
+		<img src="resources/image/f2.jpg" />
+		<c:if test="${b.done eq 'N'}">
+			<h1 style="color: red;">게시판 글읽기</h1>
+		</c:if>
+		<c:if test="${b.done eq 'Y'}">
+			<h1>게시판 글읽기</h1>
+		</c:if>
+		<br>
+		<table class="table table-bordered">
+			<TR>
 				<TH>NUM</TH>
-				<TD>${todo.num }</TD>
+				<TD>${b.num }</TD>
 				<Th>ID</TH>
-				<TD>${todo.id }</TD>
+				<TD>${b.id }</TD>
 			</TR>
 			<TR>
 				<TH>SDATE</TH>
-				<TD>${todo.sdate }</TD>
+				<TD>${b.sdate }</TD>
 				<TH>EDATE</TH>
-				<TD>${todo.edate }</TD>
-			</TR>
-			<TR>
-				<TH>DONE</TH>
-				<TD COLSPAN=3><a href="complete?num=${todo.num }" onclick="return confirm('달성 여부를 변경하시겠습니까?')">${todo.done}</a></TD>			
+				<TD>${b.edate }</TD>
 			</TR>
 			<TR>
 				<TH>CONTENT</TH>
-				<TD COLSPAN=3>
-				<textarea readonly class="form-control" rows="5" id="comment" name="comment">${todo.content }</textarea>
-			</td>
-			</div>
+				<TD COLSPAN=3><textarea readonly class="form-control" rows="5"
+						id="comment" name="comment">${b.content }</textarea></td>
 			</TR>
-		</TABLE>	
-		<a href="modify?num=${todo.num }">수정하기</a> /
-		<a href="delete?num=${todo.num }" onclick="return confirm('정말 삭제하시겠습니까?')">삭제하기</a> <br>	
-		<a href="list">전체 목록</a>
-		<br><br>
+		</TABLE>
+		<a href="complete?num=${b.num }">완료하기</a><br> <a
+			href="update?num=${b.num }">수정하기</a><br> <a
+			href="delete?num=${b.num }">삭제하기</a><br> <a href="list">초기화면</a>
+		<br> <br>
 
 	</div>
 </body>

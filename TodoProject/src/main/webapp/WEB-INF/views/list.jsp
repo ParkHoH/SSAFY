@@ -19,54 +19,42 @@
 <body>
 	<div class="container text-center">
 		<img src="resources/image/f1.jpg" />
-		<h1>TODO LIST</h1>
+		<h1>Spring MVC 게시판</h1>
+
+		<jsp:include page="loginCheck.jsp" />
 		
-		<%-- <jsp:include page="loginCheck.jsp" />
-		 --%>
-		<form action="search" method="post">
-			검 색: <select name="condition">
-				<option value="id">아이디</option>
+		<form action="find" method="post">
+			검 색 : <select name="search">
+				<option value="id">사용자</option>
 				<option value="content">내용</option>
-			</select> 
-			<input type="text" name="word"> 
-			<input type="submit" value="검색">
+			</select> <input type="text" name="word" /> <input type="submit" value="검색" />
 		</form>
+
 
 		<table class="table table-striped">
 			<thead>
 				<tr>
 					<th>번호</th>
 					<th>내용</th>
-					<th>달성 여부</th>
+					<th>체크</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${list }" var="row">
+				<c:forEach items="${list}" var="item">
 					<tr>
-						<td><a href="read?num=${row.num }">${row.num }</a></td>
-						<td>${row.content }</td>
-						<td><a href="complete?num=${row.num }" onclick="return confirm('달성 여부를 변경하시겠습니까?')">${row.done }</a></td>
+						<td>${item.num }</td>
+						<td><a href="find?num=${item.num}">${item.content }</a></td>
+						<td>${item.done }</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		<a href="insert">새 todo 등록</a> /
-		<a href="deleteAll" onclick="return confirm('정말 모두 삭제하시겠습니까?')">전체 todo 삭제</a> <br>
-		<a href="list">전체 목록</a>
+		<br>
 	</div>
+	<br>
+	<a href="create">새글쓰기</a>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
 
 
 

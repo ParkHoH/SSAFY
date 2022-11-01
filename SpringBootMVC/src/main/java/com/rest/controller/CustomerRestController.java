@@ -18,12 +18,17 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mvc.service.CustomerService;
 import com.mvc.vo.Customer;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 @RestController
+@Api(value = "CustomerRestController-Version 1")
 public class CustomerRestController {
 	@Autowired
 	CustomerService service;
 
 	@GetMapping("/customers")
+	@ApiOperation(value = "selectAll", notes = "customer table의 모든 데이터입니다.")
 	public ResponseEntity<?> selectAll() {
 		List<?> list = service.selectAll();
 		if (list != null && !list.isEmpty()) {

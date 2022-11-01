@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="login" id="f" method="post">
+<form action="login.bod" id="f" method="post">
 		<fieldset>
 			<legend>로그인 정보</legend>
 			<ul>

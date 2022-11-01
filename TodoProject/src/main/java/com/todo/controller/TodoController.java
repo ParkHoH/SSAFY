@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,80 +13,84 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.todo.service.TodoService;
-import com.todo.vo.Todo;
+import com.todo.vo.TodoDTO;
 
 @Controller
 public class TodoController {
-	TodoService service;
+	
+	private static final Logger logger = LoggerFactory.getLogger(TodoController.class);
+	
+	TodoService ts;
 	
 	@Autowired
-	public TodoController(TodoService service) {
-		this.service = service;
+	public TodoController(TodoService ts) {
+		this.ts = ts;
 	}
 
-	@GetMapping(value = "list")
-	public String list(Model model) {
-		List<Todo> list =  service.allList();
-		model.addAttribute("list", list);
+	@GetMapping(value = "/")
+	public String main(Model model) throws Exception {
+		return "redirect:/list";
+	}
+ 
+	@GetMapping(value = "/list")
+	public String list(Model model) throws Exception {
+		List<TodoDTO> result = ts.allList();
+		model.addAttribute("list", result);
 		return "list";
 	}
-	
-	@PostMapping(value = "search")
-	public String search(Model model, String condition, String word, HttpServletRequest req) throws Exception {
-		List<Todo> list = (condition.equals("id")) ? service.findById(word) : service.findByContent(word);
-		model.addAttribute("list", list);
-		return "list";
-	}
-	
-	@GetMapping(value = "read")
-	public String findByNum(Model model, @RequestParam String num) throws Exception {
-		Todo todo = service.findByNum(num);
-		model.addAttribute("todo", todo);
+
+	@GetMapping(value = "/find")
+	public String findGet(@RequestParam Map<String, String> param, Model model) throws Exception {
+		List<TodoDTO> result = ts.find(param);
+		model.addAttribute("b", result.get(0));
 		return "read";
 	}
-	
-	@GetMapping(value = "insert")
-	public String insertForm() throws Exception {
+
+	@PostMapping(value = "/find")
+	public String findPost(@RequestParam Map<String, String> param, Model model) throws Exception {
+		List<TodoDTO> result = ts.find(param);
+
+		model.addAttribute("list", result);
+		return "list";
+	}
+
+	@GetMapping(value = "/create")
+	public String createForm() {
 		return "insert";
 	}
 
-	@PostMapping(value = "insert")
-	public String insert(@ModelAttribute Todo todo) throws Exception {
-		service.add(todo);
-		return "redirect:/list";
-	}
-	
-	@GetMapping(value = "modify")
-	public String modifyForm(Model model, @RequestParam String num) throws Exception {
-		Todo todo = service.findByNum(num);
-		model.addAttribute("todo", todo);
-		return "modify";
-	}
-
-	@PostMapping(value = "modify")
-	public String modify(@ModelAttribute Todo todo) throws Exception {
-		service.modify(todo);
+	@PostMapping(value = "/create")
+	public String create(@ModelAttribute TodoDTO param) throws Exception {
+		boolean result = ts.add(param);
 		return "redirect:/list";
 	}
 
-	@GetMapping(value = "delete")
-	public String delete(@RequestParam String num) throws Exception {
-		service.delete(num);
+	@GetMapping(value = "/update")
+	public String updateForm(@RequestParam String num, Model model) throws Exception {
+		Map<String, String> param = new HashMap<>();
+		param.put("num", num);
+		TodoDTO result = ts.find(param).get(0);
+		model.addAttribute("todo", result);
+		return "update";
+	}
+
+	@PostMapping(value = "/update")
+	public String update(@ModelAttribute TodoDTO param) throws Exception {
+		boolean result = ts.modify(param);
 		return "redirect:/list";
 	}
 
-	@GetMapping(value = "complete")
-	public String complete(@RequestParam String num, HttpServletRequest req) throws Exception {
-		service.complete(num);
-		return "redirect:" + req.getHeader("Referer");
+	@GetMapping(value = "/delete")
+	public String delete(String num) throws Exception {
+		boolean result = ts.delete(num);
+		return "redirect:/list";
 	}
-	
-	@GetMapping(value = "deleteAll")
-	public String deleteAll() throws Exception {
-		service.deleteAll();
+
+	@GetMapping(value = "/complete")
+	public String complete(@RequestParam String num) throws Exception {
+		boolean result = ts.complete(num);
 		return "redirect:/list";
 	}
 }

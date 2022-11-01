@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.todo.mapper.TodoMapper">
+	<select id="allList" resultType="TodoDTO">
+		SELECT num, content, done
+		FROM todo;
+	</select>
+
+	<select id="findById" resultType="TodoDTO">
+		SELECT num, content, done
+		FROM todo
+		WHERE id = #{id};
+	</select>
+
+	<select id="findByNum" resultType="TodoDTO">
+		SELECT num, content, id, sdate, edate, done
+		FROM todo
+		WHERE num = #{num};
+	</select>
+
+	<select id="findByContent" resultType="TodoDTO">
+		SELECT num, content, done
+		FROM todo
+		WHERE content LIKE concat('%', #{content},'%');
+	</select>
+
+	<insert id="add" parameterType="TodoDTO">
+		INSERT INTO todo (content, id, sdate, edate, done)
+		VALUES (#{content}, #{id}, #{sdate}, #{edate}, #{done});
+	</insert>
+
+	<update id="modify">
+		UPDATE todo SET 
+			content = #{content},
+		 	id = #{id},
+		 	sdate = #{sdate},
+		 	edate = #{edate},
+		 	done = #{done}
+		WHERE num = #{num};
+	</update>
+
+	<delete id="delete" parameterType="TodoDTO">
+		DELETE FROM todo
+		WHERE num = #{num};
+	</delete>
+
+	<update id="complete">
+		UPDATE todo SET done = "Y"
+		WHERE num = #{num};
+	</update>
+
+	<delete id="deleteAll">
+		DELETE FROM todo;
+	</delete>
+</mapper>

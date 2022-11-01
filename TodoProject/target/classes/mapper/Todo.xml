@@ -1,58 +1,80 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- 이 파일과 매핑되어 실행될 때 사용되는 자바 파일명 -->
-<mapper namespace="com.todo.mapper.TodoMapper"> 
-	<select id="allList" resultType="Todo">
-		select num, content, done 
-		from todo
-		order by num desc
+<mapper namespace="com.todo.mapper.TodoMapper">
+	<select id="allList" resultType="TodoDTO">
+		SELECT	num,
+				content,
+				done
+		FROM
+			todo;
 	</select>
-	
-	<select id="findByNum" resultType="Todo">
-		select * 
-		from todo
-		where num = #{num}
+
+	<select id="findById" resultType="TodoDTO">
+		SELECT 	num,
+		 		content,
+		  		done
+		FROM 
+			todo
+		WHERE
+			id = #{id};
 	</select>
-	
-	<select id="findById" resultType="Todo">
-		select num, content, done 
-		from todo
-		where id = #{id}
+
+	<select id="findByNum" resultType="TodoDTO">
+		SELECT 	num,
+		 		content,
+		 		id,
+		 		sdate,
+		 		edate,
+		  		done
+		FROM 
+			todo
+		WHERE
+			num = #{num};
 	</select>
-	
-	<select id="findByContent" resultType="Todo">
-		select num, content, done 
-		from todo
-		where content like concat('%', #{content}, '%') 
+
+	<select id="findByContent" resultType="TodoDTO">
+		SELECT 	num,
+		 		content,
+		  		done
+		FROM 
+			todo
+		WHERE
+			content LIKE concat('%', #{content},'%');
 	</select>
-	
-	<insert id="add" parameterType="Todo">
-		insert into todo
-		values (#{num}, #{content}, #{id}, #{sdate}, #{edate}, #{done})
+
+	<insert id="add" parameterType="TodoDTO">
+		INSERT INTO 
+			todo(content,id,sdate,edate,done)
+		VALUES
+			(#{content},#{id},#{sdate},#{edate},#{done});
 	</insert>
-	
-	<update id="modify" parameterType="Todo">
-		update todo
-		set content = #{content}, id = #{id}, sdate = #{sdate}, edate = #{edate}, done = #{done}
-		where num = #{num}
+
+	<update id="modify">
+	UPDATE todo SET 
+		content = #{content},
+	 	id = #{id},
+	 	sdate = #{sdate},
+	 	edate = #{edate},
+	 	done = #{done}
+	WHERE
+		num = #{num};
 	</update>
-	
-	<delete id="delete" parameterType="String">
-		delete from todo
-		where num = #{num}
-	</delete>	
-	
-	<update id="complete" parameterType="String">
-		update todo
-		set done = if(done = 'Y', 'N', 'Y')
-		where num = #{num}
-	</update>	
-	
-	<delete id="deleteAll">
-		delete from todo
+
+	<delete id="delete" parameterType="TodoDTO">
+	DELETE FROM todo
+	WHERE num = #{num};
 	</delete>
-	
+
+	<update id="complete">
+	UPDATE todo SET 
+ 		done = "Y"
+	WHERE
+		num = #{num};
+	</update>
+
+	<delete id="deleteAll">
+		DELETE FROM todo;
+	</delete>
 </mapper>
