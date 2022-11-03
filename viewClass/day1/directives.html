@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@2"></script>
+</head>
+<body>
+  <!-- directive:
+    태그 안에서 v-로 시작하는 속성들. 화면 요소를 좀 더 쉽게 좆가하기 위해서 사용.
+    v-bind, v-model, v-if, v-show, v-for, v-text, v-html, v-on, v-else 등
+  -->
+  <div id="app">
+    <div>
+      <h2 v-pre>{{그대로 출력해주세요.}}</h2>
+      <span>text: {{msg}}</span>
+
+    </div>
+  
+    <hr>
+    
+    <div v-text="msg"></div>
+    <div v-html="msg"></div>
+    
+    <a href="#" v-if="flag1">v-if Flag1</a>
+    <a href="#" v-if="flag2">v-if Flag2</a>
+    
+    <a href="#" v-show="flag1">v-if Flag1</a>
+
+    <hr>
+
+    <a href="#" v-if="num < 20">gogo, vue!</a>
+    <a href="#" v-else-if="num < 50">bye, vue!</a>
+    <a href="#" v-else>fly, vue!</a>
+
+    <hr>
+
+    <ul>
+      <li v-for="system in systems" :key="system">{{system}}</li>
+    </ul>
+
+    <h5 :id="uid">vue day-1</h5>
+    <h6 :id="uid2">vue day-2</h6>
+
+    <img :src="src" />
+
+    <hr>
+
+    <button v-on:click="hello">press</button>
+    <button @click="hello">press</button>
+
+  </div>
+
+  <script>
+    let vm = new Vue({
+      el: "#app",
+      data() {
+        return {
+          num: 125,
+          flag1: false,
+          flag2: true,
+          systems:['android', 'ios', 'windows'],
+          uid: 'a100',
+          uid2: 'a200',
+          msg: '<h1>welcome, vue!</h1>',
+          src: './img/blueBlouse.jpg'
+        }
+      },
+      methods: {
+        hello() {
+          alert("hello");
+        }
+      },
+    })
+
+  </script>
+
+
+</body>
+</html>

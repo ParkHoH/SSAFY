@@ -18,6 +18,7 @@ public class TodoServiceImpl implements TodoService {
 
 	@Override
 	public List<TodoDTO> allList() throws Exception {
+		System.out.println(tm == null);
 		return tm.allList();
 	}
 

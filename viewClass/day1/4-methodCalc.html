@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+	<title>Insert title here</title>
+	<script src="https:unpkg.com/vue@2"></script>
+</head>
+<body>
+	<div class="container" id="app">
+		<h1>calculator</h1>
+		<form class="form-inline">
+			<input class="form-control" v-model.num="num1">
+			<select class="form-control" v-model="operator">
+				<option :value="'+'">+</option>
+				<option :value="'-'">-</option>
+				<option :value="'*'">*</option>
+				<option :value="'/'">/</option>			
+			</select>
+			<input class="form-control" v-model.num="num2">
+			<button class="btn btn-primary" type="submit" @click.prevent="calc">calculate!</button>
+		</form>	
+			<h2>result: {{result}}</h2>
+		
+	</div>
+
+
+<script type="text/javascript">
+	let vm = new Vue({
+		el: "#app",
+
+		data() {
+			return {
+				num1: 0,
+				num2: 0,
+				operator: '+',
+				result: 0
+			}
+		},
+
+		methods: {
+			calc() {
+				if (this.operator === '+') {
+					this.result = parseInt(this.num1) + parseInt(this.num2);
+				} else if (this.operator === '-') {
+					this.result = parseInt(this.num1) - parseInt(this.num2);
+				} else if (this.operator === '*') {
+					this.result = parseInt(this.num1) * parseInt(this.num2);
+				} else {
+					this.result = parseInt(this.num1) / parseInt(this.num2);
+				}
+			}
+		},
+	});
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
