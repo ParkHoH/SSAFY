@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@2"></script>
+</head>
+<body>
+  <div id="app">
+    email: <input type="checkbox" id="email" v-model="email"> {{email}}
+    <hr>
+
+    banana <input type="checkbox" v-model="fruits" value="바나나"><br>
+    orange <input type="checkbox" v-model="fruits" value="오렌지"><br>
+    apple <input type="checkbox" v-model="fruits" value="사과"><br>
+
+    <p>선택된 과일 : {{fruits}}</p>
+
+  </div>
+
+
+  <script>
+    let vm = new Vue({
+      el: "#app",
+      data() {
+        return {
+          email: false,
+          fruits: [],
+        }
+      },
+    });
+
+
+  </script>
+</body>
+</html>

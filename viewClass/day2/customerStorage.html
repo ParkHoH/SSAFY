@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@2"></script>
+</head>
+<body>
+  <div id="app">
+    번호: <input type="text" v-model="num"/> <br />
+    이름: <input type="text" v-model="name"/> <br />
+    주소: <input type="text" v-model="address"/> <br />
+
+    <button @click="add">추가</button>
+    <button @click="deleteOne">삭제</button>
+    <button @click="selectAll">전체 조회</button>
+    <button @click="deleteAll">전체 삭제</button>
+    <button @click="search">검색</button>
+    <button @click="init">초기화</button>
+    <hr />
+
+    <ul>
+      <li v-for="(searchList, index) in searchLists" :key="index" style="list-style: none;">
+        {{searchList.num}}. 이름: {{searchList.name}} / 주소: {{searchList.address}}
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    let vm = new Vue({
+      el: "#app",
+
+      data() {
+        return {
+          num: "",
+          name: "",
+          address: "",
+          searchLists: [],
+        }
+      },
+
+      methods: {
+        add() {
+          localStorage.setItem(this.num, JSON.stringify({
+            num: this.num,
+            name: this.name,
+            address: this.address,
+          }));
+
+          this.init();
+        },
+
+        deleteOne() {
+          localStorage.removeItem(this.num);
+          this.init();
+        },
+
+        selectAll() {
+          this.init();
+          
+          for (let i = 0; i < localStorage.length; i++) {
+            let key = localStorage.key(i);
+            let val = localStorage.getItem(key);
+            this.searchLists.push(JSON.parse(val));
+          }
+        },
+
+        deleteAll() {
+          localStorage.clear();
+          this.init();
+        },
+
+        search() {
+          if (this.num === "") {
+            alert("번호를 입력해주세요.");
+            return;
+          }
+          this.searchLists = [];
+          let result = JSON.parse(localStorage.getItem(this.num));
+
+          if (result === null) {
+            alert("검색 결과가 없습니다.");
+            return;
+          }
+
+          this.searchLists.push(result);
+        },
+
+        init() {
+          this.num = "";
+          this.name = "";
+          this.address = "";
+          this.searchLists = [];
+        },
+      },
+    });
+
+
+  </script>
+</body>
+</html>

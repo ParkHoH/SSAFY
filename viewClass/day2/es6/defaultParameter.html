@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    console.log("test");
+    // rest parameter(가변 파라메터)
+    function test(num, name, ...favoriteFood) {
+      console.log(num, name);
+      console.log(favoriteFood);
+    }
+
+    test(1, 'tom', '장어회');
+    test(2, 'jane', '로제', '떡볶이');
+
+    // fuction go(msg = '디폴트 메시지 입니다.') {
+    //   console.log(msg);
+    // }
+
+    // go("Will you go?"); // Will you go?
+    // go(); // 디폴트 메시지 입니다.
+    // go('잘 되나요?', 'hi', 333); // 
+  </script>
+</body>
+</html>
