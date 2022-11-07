@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@2"></script>
+</head>
+<body>
+  <div id="app">
+    <p>{{model.message}}</p>
+    
+    <p>{{model.message | loop3}}</p>
+    <p>{{model.message | toUpper}}</p>
+  </div>
+
+  <script>
+    let model = {
+      message: 'hello vue!',
+    };
+    
+    let vm = new Vue({
+      el: "#app",
+
+      data() {
+        return {
+          model,
+        }
+      },
+
+      filters: {
+        loop3(value) {
+          let s = '';
+
+          for (let i = 0; i < 3; i++) {
+            s += value;
+          }
+
+          return s;
+        },
+
+        toUpper(value) {
+          return value.toUpperCase();
+        }
+      }
+    });
+  </script>
+</body>
+</html>

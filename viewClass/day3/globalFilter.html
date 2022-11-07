@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@2"></script>
+</head>
+<body>
+  <div id="app">
+    <div>
+      <input type="text" v-model="msg">
+    </div>
+
+    <div>
+      <h2>결과</h2>
+      <h3>{{msg | filter1}}</h3>
+      <h3>{{msg | filter2('문자를 넣어주세요')}}</h3>
+    </div>
+  </div>
+  
+  <hr>
+
+  <div id="other">
+    <div>
+      <input type="text" v-model="msg2">
+    </div>
+
+    <div>
+      <h2>결과</h2>
+      <h3>{{msg2 | filter1}}</h3>
+      <h3>{{msg2 | filter3('문자를 넣어주세요')}}</h3>
+    </div>
+  </div>
+
+  <script>
+    Vue.filter('filter1', (value) => {
+      if (value.length === 0) {
+        return;
+      }
+      
+      return `${value} : ${value.length}자`;
+    });
+
+    new Vue({
+      el: "#app",
+      data() {
+        return {
+          msg: "",
+        }
+      },
+
+      filters: {
+        filter2(value, alternative) {
+          if (value.length === 0) {
+            return alternative;
+          }
+
+          return `${value} : ${value.length}자`;
+        },
+      }
+    });
+
+    new Vue({
+      el: "#other",
+      data() {
+        return {
+          msg2: "",
+        }
+      },
+
+      filters: {
+        filter3(value, alternative) {
+          if (value.length === 0) {
+            return alternative;
+          }
+
+          return `${value} : ${value.length}자`;
+        },
+      }
+    });
+
+  </script>
+</body>
+</html>
