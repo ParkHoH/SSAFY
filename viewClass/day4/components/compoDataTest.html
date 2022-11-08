@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@2"></script>
+</head>
+<body>
+  <div id="app">
+    <child-compo :msg="msg"></child-compo>
+    <child-compo :msg="msg"></child-compo>
+  </div>
+
+  <template id="child-template">
+    <div>
+      <button @click="countUp()">{{msg}} - {{num}}</button>
+    </div>
+  </template>
+  
+  <script>
+    Vue.component('child-compo', {
+      template: "#child-template",
+      props: ['msg'],
+      data() {
+        return {
+          num: 0,
+          name: 'kim'
+        }
+      },
+
+      methods: {
+        countUP() {
+          ++this.num;
+        }
+      },
+    });
+
+    new Vue({
+      el: "#app",
+
+      data() {
+        return {
+          msg: 'I am your father!',
+        }
+      },
+    });
+
+  </script>
+</body>
+</html>

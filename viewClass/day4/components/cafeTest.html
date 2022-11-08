@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@2"></script>
+</head>
+<body>
+  <div id="app">
+  </div>
+
+  <template id="main">
+    <div>
+      <h1>음료를 주문하세요.</h1>
+      <h2 :total="total">총 주문수: {{total}}</h2>
+      <coffee v-for="title in titles" :title="title" @addtotal="addTotal()"></coffee>
+    </div>
+  </template>
+
+  <template id="order">
+    <button @click="upCount()">{{title}} - {{count}}</button>
+  </template>
+
+  <script>
+    Vue.component('coffee', {
+      props: ['title'],
+      template: '#order',
+
+      data() {
+        return {
+          count: 0,
+        }
+      },
+      
+      methods: {
+        upCount() {
+          this.count++;
+          this.$emit('addtotal');
+        }
+      },
+    });
+    
+    new Vue({
+      el: "#app",
+      template: "#main",
+
+      data() {
+        return {
+          titles: ['아메리카노', '카페라떼', '우유', '생강차'],
+          total: 0, 
+        }
+      },
+
+      methods: {
+        addTotal() {
+          this.total++;
+        }
+      }
+    });
+
+  </script>
+</body>
+</html>

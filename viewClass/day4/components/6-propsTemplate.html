@@ -1,0 +1,40 @@
+<html>
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <title>Hello Vue</title>
+    <script src="https://unpkg.com/vue@2"></script>
+</head>
+<body>
+    <div class="container">      
+        <my-story :story="{plot:'My Car is amazing.', writer: 'Mr.Bel'}"></my-story>
+        <my-story :story="{plot:'My Train is amazing.', writer: 'Mr.Kim'}"></my-story>
+        <my-story :story="{plot:'My Summer is amazing.', writer: 'Mr.Lee'}"></my-story>
+    </div>
+</body>
+
+<!-- 1. template  -->
+<template id="story-template">
+    <div>
+        <h1>{{story.writer}} said "{{story.plot}}"</h1>
+    </div>
+</template>
+
+
+<script type="text/javascript">
+    //2.compo 정의: my-story
+    Vue.component('my-story', {
+        template: "#story-template",
+        props: ["story"],
+    });
+
+
+    new Vue({
+        el: ".container",
+        data() {
+            return {
+                "story": {},
+            }
+        },
+    })
+</script>
+</html>

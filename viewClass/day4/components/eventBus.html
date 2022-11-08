@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@2"></script>
+</head>
+<body>
+  <div id="app">
+    <child-compo></child-compo>
+  </div>
+
+  <template id="template">
+    <div>
+      <button @click="showLog">press</button>
+    </div>
+  </template>
+
+  <script>
+    let bus = new Vue({
+
+    }); // 이벤트 처리용 객체
+
+    Vue.component('child-compo', {
+      template: "#template",
+      methods: {
+        showLog() {
+          // 이벤트 발생시킴
+          bus.$emit('trigger', 300);
+        }
+      },
+    })
+
+    new Vue({
+      el: "#app",
+      created() {
+        // 이벤트 처리 등록
+        bus.$on('trigger', function(val) {
+          alert(val);5
+        });
+      },
+    });
+
+  </script>
+</body>
+</html>
