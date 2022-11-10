@@ -41,11 +41,14 @@
 		<div>
 			<ul>
 				<li v-for="(user, index) in users" :key="user.id">
-					{{user.id}} -- <router-link :to="`/users/${user.id}`">{{user.name}}</router-link>
-					{{user.id}} -- <a href="#" @click="$router.push({name: `userview`, params: {id: user.id}})">{{user.name}}</a>
+					<!-- {{user.id}} -- <router-link :to="`/users/${user.id}`">{{user.name	}}</router-link> -->
+					<!-- {{user.id}} -- <router-link :to="`/users/${user.id}`">{{user.name}}</router-link> -->
+					{{user.id}} -- <router-link :to="{ name: 'userview', params: { id: `${user.id}`}}">{{user.name}}</router-link>
+					<!-- {{user.id}} -- <a href="#" @click="$router.push({name: `userview`, params: {id: user.id}})">{{user.name}}</a> -->
 				</li>
 			</ul>
 		</div>
+		<router-view></router-view>
 	</template>
 
 
@@ -71,7 +74,7 @@
 		};
 
 		let UserView = {
-			template: `<div></div>`,
+			template: `<div>test</div>`,
 		}
 
 		// 라우터: 각 라우트(경로)에 컴포넌트를 매핑
@@ -100,7 +103,12 @@
 					path: "*",
 					name: "all",
 					redirect: "/top",
-				}
+				},
+				// {
+				// 	path: "/users/:id",
+				// 	name: "userview",
+				// 	component: UserView,
+				// }
 			]
 		});
 

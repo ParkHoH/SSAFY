@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>어플리케이션에서 라우팅</title>
+	<script src="https://unpkg.com/vue@2"></script>
+	<script src="https://unpkg.com/vue-router@3"></script>
+</head>
+
+<body>
+	<div id="app">
+        <ul>
+            <li>
+                <router-link :to="{ name: 'news'}">News list</router-link>
+            </li>
+            <li>
+                <router-link :to="{ name: 'newsitem', params: { id: 'item-1' }}">Item 1</router-link>
+            </li>
+            <li>
+                <router-link :to="{ name: 'newsitem', params: { id: 'item-2' }}">Item 2</router-link>
+            </li>
+        </ul>
+        <router-view></router-view>
+    </div>
+
+    <script>
+        const News = {
+        template: `<div>
+        <h1>News</h1>
+        <br><br>
+        <router-view></router-view>
+        </div>
+        `
+        }
+        const Newsitem = {
+        template: "<h2>News {{this.$route.params.id}}</h2>"
+        }
+
+        const router = new VueRouter({
+        routes: [{
+            path: '/news',
+            name: 'news',
+            component: News,
+            children: [{
+                path: ':id',
+                name: 'newsitem',
+                component: Newsitem,
+            }]
+        }]
+        });
+
+
+        new Vue({
+        el: '#app',
+        router,
+        }).mount('#app');
+
+    </script>
+</body>
+
+</html>
