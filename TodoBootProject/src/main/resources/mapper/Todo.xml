@@ -4,7 +4,7 @@
 
 <mapper namespace="com.todo.mapper.TodoMapper">
 	<select id="allList" resultType="TodoDTO">
-		SELECT num, content, done
+		SELECT num, content, sdate, edate, done
 		FROM todo;
 	</select>
 
