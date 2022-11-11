@@ -1,39 +1,48 @@
 <template>
-  <table>
-    <tr>
-      <td>번호</td>
-      <td>내용</td>
-      <td>달성여부</td>
-    </tr>
+  <div>
+    <hr>
+    <b-table-simple hover small caption-top responsive>
+      <b-thead>
+        <b-tr>
+          <b-td>번호</b-td>
+          <b-td>내용</b-td>
+          <b-td>달성여부</b-td>
+        </b-tr>
+      </b-thead>
+  
+      <b-tbody>
+        <todo-list-item v-for="(todo, index) in todos" :key="index" :todo="todo"></todo-list-item>
+      </b-tbody>
+    </b-table-simple>
+    <todo-delete-all></todo-delete-all>
+  </div>
 
-    <tbody>
-      <todo-list-item v-for="(todo, index) in todos" :key="index" :todo="todo"></todo-list-item>
-    </tbody>
-  </table>
 </template>
 
 <script>
-import TodoListItem from "@/components/TodoListItem";
-import axios from "axios";
+import TodoListItem from "@/components/TodoListItem"
+import TodoDeleteAll from "@/components/TodoDeleteAll"
+import http from "@/util/http-common"
 
 export default {
   name: "TodoList",
   components: {
     TodoListItem,
+    TodoDeleteAll,
   },
 
   data() {
     return {
-      todos: {}
+      todos: {},
     }
   },
 
   created() {
     const url = "http://localhost/todo";
-    axios.get(url)
+
+    http.get(url)
       .then(response => {
         this.todos = response.data;
-        console.log(this.todos);
       })
   },
 }

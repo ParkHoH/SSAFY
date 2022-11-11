@@ -1,9 +1,9 @@
 <template>
-  <tr>
-    <th>{{todo.num}}</th>
-    <th>{{todo.content}}</th>
-    <th>{{todo.done}}</th>
-  </tr>
+  <b-tr>
+    <b-td><router-link :to="`/detail/${todo.num}`">{{todo.num}}</router-link></b-td>
+    <b-td>{{todo.content}}</b-td>
+    <b-td>{{todo.done}}</b-td>
+  </b-tr>
 </template>
 
 <script>

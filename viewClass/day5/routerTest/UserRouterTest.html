@@ -42,13 +42,14 @@
 			<ul>
 				<li v-for="(user, index) in users" :key="user.id">
 					<!-- {{user.id}} -- <router-link :to="`/users/${user.id}`">{{user.name	}}</router-link> -->
+					{{user.id}} -- <router-link :to="{name: `userview`, params : {id: user.id}}">{{user.name	}}</router-link>
 					<!-- {{user.id}} -- <router-link :to="`/users/${user.id}`">{{user.name}}</router-link> -->
-					{{user.id}} -- <router-link :to="{ name: 'userview', params: { id: `${user.id}`}}">{{user.name}}</router-link>
+					<!-- {{user.id}} -- <router-link :to="{ name: 'userview', params: { id: `${user.id}`}}">{{user.name}}</router-link> -->
 					<!-- {{user.id}} -- <a href="#" @click="$router.push({name: `userview`, params: {id: user.id}})">{{user.name}}</a> -->
 				</li>
 			</ul>
 		</div>
-		<router-view></router-view>
+		<!-- <router-view></router-view> -->
 	</template>
 
 
@@ -74,7 +75,7 @@
 		};
 
 		let UserView = {
-			template: `<div>test</div>`,
+			template: `<div>id: {{ this.$route.params.id }} 입니다.</div>`,
 		}
 
 		// 라우터: 각 라우트(경로)에 컴포넌트를 매핑
@@ -91,24 +92,24 @@
 					path: "/users",
 					name: "users",
 					component: UserList,
-					children: [
-						{
-							path: ":id",
-							name: "userview",
-							component: UserView,
-						}
-					]
+					// children: [
+					// 	{
+					// 		path: ":id",
+					// 		name: "userview",
+					// 		component: UserView,
+					// 	}
+					// ]
 				},
 				{
 					path: "*",
 					name: "all",
 					redirect: "/top",
 				},
-				// {
-				// 	path: "/users/:id",
-				// 	name: "userview",
-				// 	component: UserView,
-				// }
+				{
+					path: "/users/:id",
+					name: "userview",
+					component: UserView,
+				}
 			]
 		});
 
